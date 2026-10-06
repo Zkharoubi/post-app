@@ -1,17 +1,16 @@
 const express = require("express")
 const router = express.Router()
-const postController = require("../controller/PostController")
-const auth = require("../middleware/auth")
-const {validationCharacter} = require("../middleware/validation")
+const postController = require("../controllers/post-controller")
+const auth = require("../middlewares/auth")
 
-router.get("/posts", postController.fetchAllPosts)
+router.get("/", postController.fetchAllPosts)
 
-router.post("/posts", auth  , postController.createPost);
-router.get("/posts/:postId", auth , postController.fetchPostById)
-router.put("/posts/:postId", auth , postController.editPost)
-router.delete("/posts/:postId", auth , postController.deletePost)
+router.post("/", auth, postController.createPost);
+router.get("/viewMore", auth, postController.viewsInc)
+router.get("/:postId", auth, postController.fetchPostById)
+router.put("/:postId", auth, postController.editPost)
+router.delete("/:postId", auth, postController.deletePost)
 
-router.post("/posts/like/", auth, postController.addLike)
-router.get("/post/viewMore/", auth, postController.viewsInc)
+router.post("/like", auth, postController.addLike)
 
 module.exports = router
