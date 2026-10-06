@@ -4,19 +4,19 @@ const Schema = mongoose.Schema
 const likeSchema = new Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref:'User',
+        ref: 'User',
         required: true
     },
-    postId:{
+    postId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref:'Post',
+        ref: 'Post',
         required: true
     },
-    reactType:{type:String, default:'like'}
+    reactType: { type: String, default: 'like' }
 
 })
 
-likeSchema.index({ userId:1, postId:1 }, { unique:true })
+likeSchema.index({ userId: 1, postId: 1 }, { unique: true })
 
 const Like = mongoose.model("Like", likeSchema)
 module.exports = Like
